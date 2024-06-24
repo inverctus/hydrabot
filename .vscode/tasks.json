@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "mypy",
+            "type": "shell",
+            "command": "source venv/bin/activate; mypy src/.",
+            "options": {
+                "cwd": "${workspaceFolder}/",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "mypy (windows)",
+            "type": "shell",
+            "command": "source venv/Scripts/activate; mypy src/.",
+            "options": {
+                "cwd": "${workspaceFolder}/",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Python Black (linux)",
+            "type": "shell",
+            "command": "source venv/bin/activate; isort src/.; black src/",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Python Black (windows)",
+            "type": "shell",
+            "command": "source venv/Scripts/activate; isort src/.; black src/",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

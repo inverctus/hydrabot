@@ -1,0 +1,12 @@
+FROM node:22-bookworm
+
+RUN npm install -g ganache
+
+ENV CHAIN_ID 8453
+ENV WALLET_BALANCE 100000000000000000000000
+ENV WALLET_PRIVATE_KEY UNDEFINED
+ENV WEB3_PROVIDER_URL https://web3.provider/
+
+EXPOSE 8545
+
+ENTRYPOINT ganache -h 0.0.0.0 --wallet.accounts 0x$WALLET_PRIVATE_KEY,$WALLET_BALANCE --chain.chainId $CHAIN_ID --chain.networkId $CHAIN_ID --fork $WEB3_PROVIDER_URL

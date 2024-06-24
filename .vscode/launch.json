@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Chat Bot",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/chat_bot.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Trade Bot",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/trade_bot.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Bot API",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/bot_api.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

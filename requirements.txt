@@ -1,0 +1,17 @@
+web3==6.17.0 
+pydantic==2.7.0
+discord.py==2.3.2
+python-dotenv==1.0.1
+sqlalchemy==2.0.29
+psycopg2-binary==2.9.9
+uniswap-universal-router-decoder==1.1.0
+mypy==1.10.0
+types-requests==2.31.0
+black==24.4.2
+isort==5.13.2
+pgcli==4.1.0
+flask==3.0.3
+Flask-Pydantic==0.12.0
+sphinx==7.3.7
+pytest
+sphinx-rtd-theme==2.0.0

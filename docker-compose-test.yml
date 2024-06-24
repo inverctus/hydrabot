@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=hydrabot
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=hydrabot-test
+    ports:
+      - "5432:5432"

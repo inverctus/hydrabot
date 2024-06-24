@@ -1,0 +1,68 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=hydrabot
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=hydrabot
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    
+  chatbot:
+    image: hydrabot:latest
+    restart: always
+    environment:
+      - DATABASE_URI=postgresql://hydrabot:${DB_PASSWORD}@postgres/hydrabot
+      - BOT_TOKEN=${BOT_TOKEN}
+      - WEB3_PROVIDER_URL=${WEB3_PROVIDER_URL}
+      - LISTEN_CHANNEL_ID=${LISTEN_CHANNEL_ID}
+      - BASESCAN_API_KEY=${BASESCAN_API_KEY}
+      - USER_IDS=${USER_IDS}
+      - WEB_API_KEY=${WEB_API_KEY}
+      - WEB_API_URI=${WEB_API_URI}
+    profiles: [bot]
+    depends_on:
+      - postgres
+  
+  tradebot:
+    image: hydrabot:latest
+    restart: always
+    environment:
+      - DATABASE_URI=postgresql://hydrabot:${DB_PASSWORD}@postgres/hydrabot
+      - WALLET_PRIVATE_KEY=${WALLET_PRIVATE_KEY}
+      - WEB3_PROVIDER_URL=${WEB3_PROVIDER_URL}
+      - BASESCAN_API_KEY=${BASESCAN_API_KEY}
+    profiles: [bot]
+    depends_on:
+      - postgres
+    entrypoint: ["python", "trade_bot.py"]
+
+  botapi:
+    image: hydrabot:latest
+    restart: always
+    environment:
+      - DATABASE_URI=postgresql://hydrabot:${DB_PASSWORD}@postgres/hydrabot
+      - WEB_API_KEY=${WEB_API_KEY}
+    profiles: [api]
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    entrypoint: ["python", "bot_api.py"]
+
+  ganache-fork:
+    image: ganache-fork:latest
+    restart: always
+    environment:
+      - WALLET_PRIVATE_KEY=${WALLET_PRIVATE_KEY}
+      - WEB3_PROVIDER_URL=${WEB3_PROVIDER_URL}
+    profiles: [ganache]
+    ports:
+     - "8545:8545"
+volumes:
+  db-data:
+    driver: local
