@@ -26,7 +26,11 @@ You can also implement your own Trading Strategy.
 
 ## Using Hydrabot
 
-You can look at the documentation here (TODO ADD LINK)
+You can look at the documentation here:
+
+https://github.com/inverctus/hydrabot/blob/master/docs/source/hydrabot_setup.rst
+
+https://github.com/inverctus/hydrabot/blob/master/docs/source/use_hydrabot.rst
 
 
 ## Participation
